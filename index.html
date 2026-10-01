@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Nexus | Notícias, Jogos & Monetização</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #131c2e;
+            --accent-primary: #10b981;
+            --accent-hover: #059669;
+            --accent-secondary: #6366f1;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #1f293d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(135deg, #131c2e 0%, #0f172a 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            flex: 1;
+            width: 100%;
+        }
+
+        @media (max-width: 900px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .content-section {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            border-radius: 12px;
+            padding: 30px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-banner p {
+            font-size: 1.05rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #0f172a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #1e293b;
+            transform: translateY(-2px);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 10px;
+        }
+
+        .article-card h3 {
+            color: var(--accent-primary);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .article-card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-primary);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Minigame Styles */
+        .minigame-box {
+            text-align: center;
+            background: linear-gradient(180deg, var(--card-bg) 0%, #0f172a 100%);
+        }
+
+        .coin-display {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fbbf24;
+            margin: 15px 0;
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+        }
+
+        .click-btn {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            font-size: 1.2rem;
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+            transition: transform 0.1s, box-shadow 0.1s;
+            margin-bottom: 15px;
+        }
+
+        .click-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+        }
+
+        .upgrade-btn {
+            background-color: var(--accent-secondary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .upgrade-btn:hover {
+            background-color: #4f46e5;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .leaderboard-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .leaderboard-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">🌐 GLOBAL NEXUS</a>
+            <ul class="nav-links">
+                <li><a href="#">Início</a></li>
+                <li><a href="#">Notícias do Mundo</a></li>
+                <li><a href="#">Ganhar Dinheiro</a></li>
+                <li><a href="#">Minijogos</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Coluna Principal de Conteúdo -->
+        <div class="content-section">
+            <div class="hero-banner">
+                <h1>Informação Global & Oportunidades de Lucro</h1>
+                <p>Acompanha as principais notícias do mundo, descobre métodos comprovados para faturar online e diverte-te com o nosso sistema de moedas virtuais.</p>
+                <a href="#minigame" class="btn">Jogar Minijogo Agora 🪙</a>
+            </div>
+
+            <!-- Artigo 1: Notícias do Mundo -->
+            <div class="card article-card">
+                <span class="tag">NOTÍCIAS DO MUNDO</span>
+                <h3>🌍 O Impacto da Tecnologia e Inteligência Artificial no Mercado Global em 2026</h3>
+                <p>O cenário mundial está a transformar-se rapidamente com a expansão de ferramentas digitais avançadas. Governos e empresas de todo o planeta estão a investir em infraestruturas digitais, abrindo portas sem precedentes para profissionais remotos, criadores de conteúdo e empreendedores digitais.</p>
+                <p>Compreender estas mudanças globais é o primeiro passo para posicionar os teus projetos online nos mercados que mais crescem este ano.</p>
+            </div>
+
+            <!-- Artigo 2: Como Ganhar Dinheiro -->
+            <div class="card article-card">
+                <span class="tag">MONETIZAÇÃO</span>
+                <h3>💰 Como Criar Fontes de Rendimento Automático na Internet</h3>
+                <p>Trabalhar e faturar online exige estratégia e consistência. Através da combinação de marketing de afiliados, tráfego orgânico gerado por vídeos curtos (TikTok e Shorts) e criação de plataformas interativas, é possível construir fontes de receita escaláveis.</p>
+                <p>A chave para o sucesso é manter o utilizador envolvido com conteúdos de valor e ferramentas dinâmicas dentro do teu próprio site.</p>
+            </div>
+
+            <!-- Minijogo Integrado -->
+            <div class="card minigame-box" id="minigame">
+                <h2>🪙 Nexus Coin Clicker</h2>
+                <p style="color: var(--text-muted);">Clica na moeda para acumular Nexus Coins e desbloquear bónus exclusivos enquanto navegas!</p>
+                
+                <div class="coin-display" id="coinCount">0 NC</div>
+                <button class="click-btn" onclick="addCoins()">CLICAR PARA GANHAR! 🚀</button>
+                
+                <div>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">Ganho por clique: <span id="clickPower">1</span> NC</p>
+                    <button class="upgrade-btn" onclick="buyUpgrade()">Comprar Auto-Click (Custo: <span id="upgradeCost">50</span> NC)</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barra Lateral -->
+        <div class="sidebar">
+            <div class="card">
+                <h2>⚡ Últimas do Mundo</h2>
+                <ul class="leaderboard-list" style="margin-top: 15px;">
+                    <li><span>1. Expansão Digital Global</span> <span style="color: var(--accent-primary);">Global</span></li>
+                    <li><span>2. Novas Regras de Monetização</span> <span style="color: var(--accent-primary);">Negócios</span></li>
+                    <li><span>3. Tendências de Emprego Remoto</span> <span style="color: var(--accent-primary);">Carreira</span></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>🏆 Top Jogadores Online</h2>
+                <ul class="leaderboard-list" style="margin-top: 15px;">
+                    <li><span>1. GlobalLeader</span> <strong>15,200 NC</strong></li>
+                    <li><span>2. NeoMaster</span> <strong>11,450 NC</strong></li>
+                    <li><span>3. CryptoKing</span> <strong>8,900 NC</strong></li>
+                    <li><span>4. Tu (Visitante)</span> <strong id="sidebarScore" style="color: #fbbf24;">0 NC</strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Global Nexus. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        let coins = 0;
+        let clickPower = 1;
+        let upgradeCost = 50;
+        let autoClickers = 0;
+
+        function addCoins() {
+            coins += clickPower;
+            updateDisplay();
+        }
+
+        function buyUpgrade() {
+            if (coins >= upgradeCost) {
+                coins -= upgradeCost;
+                clickPower += 1;
+                upgradeCost = Math.floor(upgradeCost * 1.5);
+                updateDisplay();
+            } else {
+                alert("Moedas insuficientes para o upgrade!");
+            }
+        }
+
+        function updateDisplay() {
+            document.getElementById('coinCount').innerText = coins + " NC";
+            document.getElementById('clickPower').innerText = clickPower;
+            document.getElementById('upgradeCost').innerText = upgradeCost;
+            document.getElementById('sidebarScore').innerText = coins + " NC";
+        }
+
+        // Sistema de Auto-Click passivo a cada segundo
+        setInterval(() => {
+            if (autoClickers > 0) {
+                coins += autoClickers;
+                updateDisplay();
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
